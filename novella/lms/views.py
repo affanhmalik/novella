@@ -34,19 +34,21 @@ def sign_up_in(request):
 	else:
 		return redirect("/login/")
 
-# 
+# Create a new user with the request credentials
 def create_user(username,email,password):
 	user = User(username=username, email=email)
 	user.set_password(password)
 	user.save()
 	return user
 
+# Check to see if username exists or not
 def user_exists(username):
 	user_count = User.objects.filter(username=username).count()
 	if user_count == 0:
 		return False
 	return True
 
+# Dummy base view for /lms
 def index(request):
 	data = {}
 	data['version'] = '1.0'
