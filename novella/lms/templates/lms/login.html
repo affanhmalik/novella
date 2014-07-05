@@ -1,8 +1,26 @@
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-Hello World
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+	Login
+{% endblock %}
+
+{% block main %}
+	<h1>Novella LMS</h1>
+	<h2>Sign in</h2>
+	<div>
+		<form name="login" action="/lms/login" method="post">
+			<input type="email" name="email" placeholder="Enter email">
+			<input type="password" name="email" placeholder="Enter email">
+			<input type="submit" value="Login">
+		</form>
+	</div>
+
+
+	<div>
+		<form name="sign up" action="/lms/register" method="post">
+			<input type="email" name="email" placeholder="Enter email">
+			<input type="password" name="email" placeholder="Enter email">
+			<input type="submit" value="Login">
+		</form>
+	</div>
+{% endblock %}
