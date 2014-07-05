@@ -9,6 +9,7 @@
 	<h2>Sign in</h2>
 	<div>
 		<form name="login" action="/lms/login/" method="post">
+			{% csrf_token %}
 			<input type="email" name="email" placeholder="Enter email">
 			<input type="password" name="password" placeholder="Enter password">
 			<input type="submit" value="Login">
@@ -19,6 +20,7 @@
 
 	<div>
 		<form name="sign up" action="/lms/register/" method="post">
+			{% csrf_token %}
 			<input type="email" name="email" placeholder="Enter email">
 			<input type="password" name="password" placeholder="Enter password">
 			<input type="submit" value="Register">
