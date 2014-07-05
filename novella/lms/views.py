@@ -16,7 +16,7 @@ def loginview(request):
 
 
 # The main authentication function for a registered user, the success and fail redirects can be changed
-def auth_and_login(request, onsuccess='/lms', onfail='/login/'):
+def auth_and_login(request, onsuccess='/lms/', onfail='/login/'):
 	user = authenticate(username=request.POST['email'], password=request.POST['password'])
 	if user is not None:
 		login(request, user)
