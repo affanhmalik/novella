@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 #from django.conf.urls.defaults import *
-from lms.api import EntryResource
+from lms.api import StudentResource
 
 from lms import views
 
