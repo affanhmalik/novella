@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from django.conf.urls.defaults import *
+#from django.conf.urls.defaults import *
 from myapp.api import EntryResource
 
 from lms import views
