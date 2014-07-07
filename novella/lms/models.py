@@ -8,6 +8,7 @@ class Student(models.Model):
 	studentid = models.ForeignKey(User)
 	first_name = models.CharField(max_length=60)
 	last_name = models.CharField(max_length=60)
+	email = models.CharField(max_length=60)
 
 class Instructor(models.Model):
 	instid = models.ForeignKey(User)

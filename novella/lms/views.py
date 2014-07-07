@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Student, Instructor
 import json
 from django.http import HttpResponse
 
@@ -30,6 +30,9 @@ def sign_up_in(request):
 	post = request.POST
 	if not user_exists(post['email']):
 		user = create_user(username=post['email'], email=post['email'], password=post['password'])
+		profile = Student()
+		profile.email = post['email']
+		profile.save()
 		return auth_and_login(request)
 	else:
 		return redirect("/login/")
