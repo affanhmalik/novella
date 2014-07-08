@@ -1,3 +1,9 @@
+#urls.py for the Novella LMS API
+#Programmers: Affan, Danhui, Ying
+#
+#
+#
+
 from django.conf.urls import patterns, url, include
 #from django.conf.urls.defaults import *
 from lms.api import StudentResource

@@ -1,3 +1,12 @@
+#models.py for the Novella LMS API
+#Programmers: Affan, Sen
+#
+#
+#
+
+
+
+
 from django.db import models
 from django.contrib.auth.models import User
 

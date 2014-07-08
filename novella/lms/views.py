@@ -1,3 +1,10 @@
+#views.py for the Novella LMS API
+#Programmers: Affan, Sen, Ben, Dnahui, Ying
+#
+#
+#
+
+
 from django.shortcuts import render
 from django.shortcuts import render_to_response, redirect
 from django.contrib.auth import authenticate, login
