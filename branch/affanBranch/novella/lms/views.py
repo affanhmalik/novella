@@ -10,6 +10,9 @@ from django.shortcuts import render_to_response, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.middleware.csrf import _get_new_csrf_key as get_new_csrf_key 
+from django.views.decorators.csrf import csrf_exempt
+
 import json
 from django.http import HttpResponse
 
@@ -23,7 +26,9 @@ def loginview(request):
 
 
 # The main authentication function for a registered user, the success and fail redirects can be changed
-def auth_and_login(request, onsuccess='/lms/', onfail='/login/'):
+@csrf_exempt
+def auth_and_login(request, onsuccess='/lms/', onfail='/lms/login/'):
+
 	user = authenticate(username=request.POST['email'], password=request.POST['password'])
 	if user is not None:
 		login(request, user)
