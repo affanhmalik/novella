@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'south','lms', 'tastypie', 'corsheaders',
+	'south','lms', 'tastypie', 'corsheaders', 'course',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -89,3 +89,7 @@ STATIC_URL = '/static/'
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_EXPOSE_HEADERS = ('origin')
+
+ADMIN_MEDIA_PREFIX = '/admin-media/'
+
+AUTH_PROFILE_MODULE = 'lms.UserProfile'
