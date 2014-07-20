@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'south','lms', 'tastypie', 'corsheaders', 'course',
+	'south','lms', 'tastypie', 'corsheaders', 'course', 'quiz',
 )
 
 MIDDLEWARE_CLASSES = (
