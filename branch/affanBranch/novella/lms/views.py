@@ -34,7 +34,7 @@ def auth_and_login(request, onsuccess='/lms/', onfail='/lms/login/'):
 		login(request, user)
 		return redirect(onsuccess)
 	else:
-		return HttpResponse(status=401)
+		return redirect(onfail)
 
 
 # View funciton for signing up a new user
