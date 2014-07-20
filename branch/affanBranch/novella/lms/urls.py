@@ -18,6 +18,8 @@ urlpatterns = patterns('',
     url(r'^register/$', views.sign_up_in, name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout'),
     url(r'^loginform/$', views.loginform, name='weblogin'),
+
+    url(r'^quizes/', include('quiz.urls')),
 #    url(r'^students/', include(student_resource.urls)),
 
 )

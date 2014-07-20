@@ -1,10 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+# from lms.models import Student, Instructor, Enrollment
+# from course.models import Section
+import lms, course
 
 # Create your models here.
 class Quiz(models.Model):
-	# student = models.ForeignKey(User)
-	# course = models.ForeignKey('Course',related_name = 'quiz') 
+	student = models.ForeignKey(lms.models.Student, related_name='quiz_student')
+	course = models.ForeignKey(course.models.Section,related_name = 'quiz_coursesection') 
 	quizName = models.CharField(max_length=200)
 	introduction = models.TextField(max_length=800)
 	timeLimit = models.IntegerField(default=5)
