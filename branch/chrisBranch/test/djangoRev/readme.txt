@@ -1,2 +1,0 @@
-Superuser: admin
-Password: admin

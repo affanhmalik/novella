@@ -1,36 +1,46 @@
 from django.db import models
+#from lms.models import Instructor
 
 # Create your models here.
 
 class Course(models.Model):
 	courseCode = models.CharField(max_length=25,default="No code yet")
 	title = models.TextField(blank=True)
-	start = models.DateField(blank=True)
-	end = models.DateField(blank=True)
-
 
 	def __unicode__(self):
 		return self.courseCode
+	
+class Section(models.Model):
+	course = models.ForeignKey(Course, related_name="section_course")
+	#instructor = models.ForeignKey(Instructor, related_name="instructor")
+	sectionCode = models.CharField(max_length=25,default="No code yet")
+	start = models.DateField(null=True, blank=True)
+	end = models.DateField(null=True, blank=True)
 
-class Lecture(models.Model):
-	course = models.ForeignKey(Course)
-	lectureCode = models.CharField(max_length=25,default="No code yet")
-	weekNumber = models.IntegerField(default="No week number assigned")
+
 
 	def __unicode__(self):
-		return (self.course.courseCode + ">" + self.lectureCode)
+		return (self.course.courseCode + ">" + self.sectionCode)
+
+class Lecture(models.Model):
+	course = models.ForeignKey(Section, related_name="lecture_section")
+	lectureCode = models.CharField(max_length=25,default="No code yet")
+	weekNumber = models.IntegerField(default=0)
+
+	def __unicode__(self):
+		return (self.course.sectionCode + ">" + self.lectureCode)
 
 class Content(models.Model):
-	course = models.ForeignKey(Lecture)
+	lecture = models.ForeignKey(Lecture, related_name="content_lecture")
 	contentCode = models.CharField(max_length=25,default="No code yet")
 	title = models.TextField(blank=True)
 	body = models.TextField(blank=True)
 
 	def __unicode__(self):
-		return (self.course.courseCode + ">" + self.lectureCode + ">" + self.contentCode)
+		return (self.course.sectionCode + ">" + self.lectureCode + ">" + self.contentCode)
 
 class Assignment(models.Model):
-	course = models.ForeignKey(Course)
+	course = models.ForeignKey(Section, related_name="assignment_section")
 	assignmentCode = models.CharField(max_length=25,default="No code yet")
 	postedDate = models.DateTimeField(auto_now_add=True)
 	dueDate = models.DateTimeField(blank=True)
@@ -43,6 +53,9 @@ class Assignment(models.Model):
 	status = models.CharField(max_length=25,default="active")
 
 	def __unicode__(self):
-		return (self.course.courseCode + ">" + self.assignmentCode)
+		return (self.course.sectionCode + ">" + self.assignmentCode)
 
-
+class Notification(models.Model):
+	course = models.ForeignKey(Section, related_name="notification_section")
+	noticeCode = models.CharField(max_length=25,default="No code yet")
+	content = models.TextField(blank=True)
