@@ -1,15 +1,22 @@
 from django.conf.urls import patterns, include, url
 from tastypie.api import Api
-from api import SectionResource
+from api import CourseResource, SectionResource, LectureResource, ContentResource, AssignmentResource, NotificationResource
 
-course_resource = CourseResource()
+# course_resource = CourseResource()
 
-# v1_api = Api(api_name='v1')
-# v1_api.register(QuizResource())
-# v1_api.register(QuestionResource())
+v1_api = Api(api_name='v1')
+v1_api.register(CourseResource())
+v1_api.register(SectionResource())
+v1_api.register(LectureResource())
+v1_api.register(ContentResource())
+v1_api.register(AssignmentResource())
+v1_api.register(NotificationResource())
+# v1_api.register()
+# v1_api.register()
+# v1_api.register()
 
 urlpatterns = patterns('',
 	# url(r'^api/',include(v1_api.urls)),
-	url(r'api/', include(course_resource.urls)),
+	url(r'api/', include(v1_api.urls)),
 	
 )

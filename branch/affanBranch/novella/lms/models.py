@@ -43,7 +43,7 @@ class Student(models.Model):
 	#photo = models.ImageField(blank=True)
 	website = models.URLField(blank=True)
 	created = models.DateTimeField(auto_now_add=True)
-	closed = models.DateTimeField(null=True)
+	closed = models.DateTimeField(null=True, blank=True)
 	status = models.CharField(max_length=30,blank=True)
 	program = models.CharField(max_length=60,default="No program")
 
@@ -67,5 +67,9 @@ class Instructor(models.Model):
 
 class Enrollment(models.Model):
 	course = models.ForeignKey(Section)
-	instructor = models.ForeignKey(Instructor)
-	students = models.ManyToManyField(Student)
+	student = models.ForeignKey(Student)
+	created = models.DateTimeField(auto_now_add=True)
+
+	def __unicode__(self):
+		return (self.student.user.username + self.course.sectionCode +self.course.course.courseCode)
+

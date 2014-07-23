@@ -46,16 +46,19 @@ class Assignment(models.Model):
 	dueDate = models.DateTimeField(blank=True)
 	title = models.TextField(blank=True)
 	body = models.TextField(blank=True)
-	#mainFile = models.FileField(blank=True)
-	#markingFile = models.FileField(blank=True)
+	mainFile = models.FileField(upload_to ='assignments' ,blank=True)
+	markingFile = models.FileField(upload_to ='marking',blank=True)
 	maxGrade = models.IntegerField(default=0)
 	weight = models.IntegerField(default=0)
 	status = models.CharField(max_length=25,default="active")
 
 	def __unicode__(self):
-		return (self.course.sectionCode + ">" + self.assignmentCode)
+		return (self.course.course.courseCode + ">" + self.course.sectionCode + ">" + self.assignmentCode)
 
 class Notification(models.Model):
 	course = models.ForeignKey(Section, related_name="notification_section")
 	noticeCode = models.CharField(max_length=25,default="No code yet")
 	content = models.TextField(blank=True)
+
+	def __unicode__(self):
+		return (self.course.course.courseCode + ">" + self.course.sectionCode + ">" + str(self.id))

@@ -93,3 +93,7 @@ CORS_EXPOSE_HEADERS = ('origin')
 ADMIN_MEDIA_PREFIX = '/admin-media/'
 
 AUTH_PROFILE_MODULE = 'lms.UserProfile'
+
+MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media/')
+
+MEDIA_URL = '/media/'

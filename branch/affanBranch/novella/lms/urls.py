@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^loginform/$', views.loginform, name='weblogin'),
 
     url(r'^quizes/', include('quiz.urls')),
+    url(r'^courses/', include('course.urls')),
 #    url(r'^students/', include(student_resource.urls)),
 
 )

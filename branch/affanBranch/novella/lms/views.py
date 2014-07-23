@@ -72,7 +72,7 @@ def index(request):
 	data['version'] = '1.0'
 	data['title'] = 'Novella Learning Management System API'
 	data['status'] = 200
-	data['message'] = 'Hello Team Too developer! Welcome to Novella. You have reached the main page of the API. The documentation is building up at lightning speed. So looks like you wont have to wait too long. See you back in a bit! - We got your back, Group J'
+	data['message'] = 'You have successfully logged in'
 	data['next_url'] = "http://54.186.33.14/lms/loginform/"
 	return HttpResponse(json.dumps(data), content_type = "application/json")
 
