@@ -2,7 +2,33 @@
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}><head>
 <title>{% block title %}{% endblock %}</title>
 <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}" />
-{% block extrastyle %}{% endblock %}
+{% block extrastyle %}
+<style>
+body{
+	background-image:url(http://i1370.photobucket.com/albums/ag256/remembershadow/35_zps4c04b277.jpg);
+	background-repeat: no-repeat;
+	background-size:cover;
+	background-attachment: fixed;
+	font-family: Gill Sans,Arial,sans-serif;
+	font-size:13px;
+}
+
+#header{
+	background-color:#036;
+}
+#branding h1{
+	text-indent:20px;
+	color:#CCC;
+}
+#user-tools{
+	font-size:12px;
+}
+.dashboard #content{
+	margin:20px;
+}
+
+</style>
+{% endblock %}
 <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% block stylesheet_ie %}{% static "admin/css/ie.css" %}{% endblock %}" /><![endif]-->
 {% if LANGUAGE_BIDI %}
 <link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}" />{% endif %}
