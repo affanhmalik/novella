@@ -1,6 +1,6 @@
 from django.contrib import admin
 from course.models import Course, Section, Lecture, Content, Assignment, Notification
-from lms.models import Student, Instructor, Enrollment
+from lms.models import UserProfile, Enrollment
 
 class SectionInline(admin.StackedInline):
 	model = Section
@@ -26,8 +26,8 @@ admin.site.register(Lecture, LectureAdmin)
 admin.site.register(Content)
 admin.site.register(Assignment)
 admin.site.register(Notification)
-admin.site.register(Student)
-admin.site.register(Instructor)
+admin.site.register(UserProfile)
+#admin.site.register(Instructor)
 admin.site.register(Enrollment)
 admin.site.register(Section)
 #admin.site.register()
