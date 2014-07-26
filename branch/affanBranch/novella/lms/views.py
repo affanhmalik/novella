@@ -11,10 +11,11 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.middleware.csrf import _get_new_csrf_key as get_new_csrf_key 
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
+from django.utils import simplejson
 
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 
 # Create your views here.
 
@@ -26,15 +27,30 @@ def loginview(request):
 
 
 # The main authentication function for a registered user, the success and fail redirects can be changed
-@csrf_exempt
+# @csrf_exempt
 def auth_and_login(request, onsuccess='/lms/', onfail='/lms/login/'):
 
 	user = authenticate(username=request.POST['email'], password=request.POST['password'])
+	#user = authenticate(username=request.POST.get('email'), password=request.POST.get('password'))
 	if user is not None:
 		login(request, user)
-		return redirect(onsuccess)
+		data = {}
+		data['groups'] = str(user.groups.get())
+		data['id'] = user.id
+		data['firstName'] = 'John'
+		data['lastName'] = 'Doe'
+		
+		return HttpResponse(json.dumps(data), content_type = "application/json")
 	else:
 		return HttpResponse(status=401)
+
+def testlogin(request):
+	text = request.POST['email']
+
+	
+	return HttpResponse(text)
+	
+
 
 
 # View funciton for signing up a new user

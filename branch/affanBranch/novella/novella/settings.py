@@ -88,7 +88,7 @@ STATIC_URL = '/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_EXPOSE_HEADERS = ('origin')
+CORS_EXPOSE_HEADERS = ()
 
 ADMIN_MEDIA_PREFIX = '/admin-media/'
 

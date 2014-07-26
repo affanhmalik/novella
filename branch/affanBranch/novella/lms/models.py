@@ -15,7 +15,7 @@ from course.models import Section
 
 #This will be the main profile model. It has a one-to-one relationship with the built-in django user class
 
-'''
+
 class UserProfile(models.Model):
 	
 	class Meta:
@@ -34,6 +34,7 @@ class UserProfile(models.Model):
 
 	def __unicode__(self):
 		return (self.first_name + " " + self.last_name + " | " + self.user.username)
+
 '''
 class Student(models.Model):
 	user = models.OneToOneField(User)
@@ -64,10 +65,11 @@ class Instructor(models.Model):
 
 	def __unicode__(self):
 		return (self.first_name + " " + self.last_name + " | " + self.user.username)
+'''
 
 class Enrollment(models.Model):
 	course = models.ForeignKey(Section)
-	student = models.ForeignKey(Student)
+	student = models.ForeignKey(UserProfile)
 	created = models.DateTimeField(auto_now_add=True)
 
 	def __unicode__(self):
