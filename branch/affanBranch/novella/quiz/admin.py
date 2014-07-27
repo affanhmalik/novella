@@ -7,6 +7,7 @@ class QuestionInline(admin.StackedInline):
 	extra = 1
 
 class QuizAdmin(admin.ModelAdmin):
+
 	inlines = [QuestionInline]
 
 admin.site.register(Quiz, QuizAdmin)

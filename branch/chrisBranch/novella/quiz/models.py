@@ -6,7 +6,7 @@ import lms, course
 
 # Create your models here.
 class Quiz(models.Model):
-	student = models.ForeignKey(lms.models.Student, related_name='quiz_student')
+	student = models.ForeignKey(lms.models.User, related_name='quiz_student')
 	course = models.ForeignKey(course.models.Section,related_name = 'quiz_coursesection') 
 	name = models.CharField(max_length=200)
 	# introduction = models.TextField(max_length=800)

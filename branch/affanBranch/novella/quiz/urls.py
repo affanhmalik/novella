@@ -12,5 +12,5 @@ quiz_resource = QuizResource()
 urlpatterns = patterns('',
 	# url(r'^api/',include(v1_api.urls)),
 	url(r'api/', include(quiz_resource.urls)),
-	url(r'^$', views.index, name='index'),
+	url(r'^post/$', views.index, name='index'),
 )
