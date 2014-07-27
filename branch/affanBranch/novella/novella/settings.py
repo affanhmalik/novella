@@ -84,13 +84,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_URL = 'novella/static/'
+STATIC_URL = '/novella/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_EXPOSE_HEADERS = ()
+CORS_EXPOSE_HEADERS = ('origin')
 
-ADMIN_MEDIA_PREFIX = 'novella/admin-media/'
+ADMIN_MEDIA_PREFIX = '/novella/admin-media/'
 
 AUTH_PROFILE_MODULE = 'lms.UserProfile'
 
