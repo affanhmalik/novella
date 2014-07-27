@@ -30,15 +30,15 @@ def loginview(request):
 # @csrf_exempt
 def auth_and_login(request, onsuccess='/lms/', onfail='/lms/login/'):
 
-	user = authenticate(username=request.POST['email'], password=request.POST['password'])
+	user = authenticate(username=request.GET['email'], password=request.GET['password'])
 	#user = authenticate(username=request.POST.get('email'), password=request.POST.get('password'))
 	if user is not None:
 		login(request, user)
 		data = {}
-		data['groups'] = str(user.groups.get())
+		data['groups'] = str(user.groups.all()[0])
 		data['id'] = user.id
-		data['firstName'] = 'John'
-		data['lastName'] = 'Doe'
+		data['firstName'] = user.first_name
+		data['lastName'] = user.last_name
 		
 		return HttpResponse(json.dumps(data), content_type = "application/json")
 	else:
@@ -55,15 +55,28 @@ def testlogin(request):
 
 # View funciton for signing up a new user
 def sign_up_in(request):
-	post = request.POST
-	if not user_exists(post['email']):
-		user = create_user(username=post['email'], email=post['email'], password=post['password'])
-		profile = Student()
-		profile.email = post['email']
-		profile.save()
-		return auth_and_login(request)
+	post = request.GET
+	email = post['email']
+	password = post['password']
+	firstName = post['firstName']
+	lastName = post['lastName']
+	if not user_exists(email):
+		user = create_user(username=email, email=email, password=password)
+		user.first_name = firstName
+		user.last_name = lastName
+		
+		user.save()
+		data = {}
+		data['response'] = 'Your request has been submitted for approval by admin.'
+		response = HttpResponse(json.dumps(data), content_type = "application/json")
+		response.status_code = 201
+		return response
 	else:
-		return redirect("/login/")
+		data = {}
+		data['response'] = 'Error: User already exists'
+		response = HttpResponse(json.dumps(data), content_type = "application/json")
+		response.status_code = 403
+		return response
 
 # Create a new user with the request credentials
 def create_user(username,email,password):

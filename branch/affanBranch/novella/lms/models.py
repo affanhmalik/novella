@@ -22,10 +22,10 @@ class UserProfile(models.Model):
 	first_name = models.CharField(max_length=60)
 	last_name = models.CharField(max_length=60)
 	email = models.EmailField(blank=True)
-	#photo = models.ImageField(blank=True)
+	
 	website = models.URLField(blank=True)
 	created = models.DateTimeField(auto_now_add=True)
-	closed = models.DateTimeField(blank=True)
+	closed = models.DateTimeField(blank=True,null=True)
 	status = models.CharField(max_length=30,blank=True)
 
 	def __unicode__(self):
