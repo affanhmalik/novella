@@ -1,5 +1,6 @@
 from django.db import models
-#from lms.models import Instructor
+from lms.models import User
+from django.contrib.auth.models import Group
 
 # Create your models here.
 
@@ -12,7 +13,7 @@ class Course(models.Model):
 	
 class Section(models.Model):
 	course = models.ForeignKey(Course, related_name="section_course")
-	#instructor = models.ForeignKey(Instructor, related_name="instructor")
+	instructor = models.ForeignKey(User, related_name="instructor", limit_choices_to= {'is_staff': True})
 	sectionCode = models.CharField(max_length=25,default="No code yet")
 	start = models.DateField(null=True, blank=True)
 	end = models.DateField(null=True, blank=True)

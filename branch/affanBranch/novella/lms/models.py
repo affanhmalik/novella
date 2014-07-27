@@ -65,8 +65,8 @@ class Instructor(models.Model):
 '''
 
 class Enrollment(models.Model):
-	course = models.ForeignKey(Section)
-	student = models.ForeignKey(User)
+	course = models.ForeignKey(Section, related_name="enroll_course")
+	student = models.ForeignKey(User, related_name="enroll_student")
 	created = models.DateTimeField(auto_now_add=True)
 
 	def __unicode__(self):
