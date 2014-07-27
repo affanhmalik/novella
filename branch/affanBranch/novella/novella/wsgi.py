@@ -14,4 +14,4 @@ from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 
 import sys
-sys.path.append('/home/ubuntu/code/project/novella')
+sys.path.append('/home/ubuntu/code/project/branch/affanBranch/novella')
