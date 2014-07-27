@@ -7,13 +7,13 @@
 
 from django.shortcuts import render
 from django.shortcuts import render_to_response, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.middleware.csrf import _get_new_csrf_key as get_new_csrf_key 
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.utils import simplejson
-
+from models import Pending
 import json
 from django.http import HttpResponse, HttpRequest
 
@@ -67,6 +67,10 @@ def sign_up_in(request):
 		user.last_name = lastName
 		
 		user.save()
+		approval = Pending()
+		approval.user = user
+		approval.approved = False
+		approval.save()
 		data = {}
 		data['response'] = 'Your request has been submitted for approval by admin.'
 		response = HttpResponse(json.dumps(data), content_type = "application/json")
@@ -106,3 +110,10 @@ def index(request):
 	data['next_url'] = "http://54.186.33.14/lms/loginform/"
 	return HttpResponse(json.dumps(data), content_type = "application/json")
 
+def logout_view(request):
+	logout(request)
+	data = {}
+	data['response'] = 'Logged out'
+	response = HttpResponse(json.dumps(data), content_type = "application/json")
+	response.status_code = 204
+	return response

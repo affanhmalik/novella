@@ -3,6 +3,16 @@ from tastypie import fields
 from tastypie.resources import ALL
 from tastypie.serializers import Serializer
 from course.models import Course, Section, Lecture, Content, Assignment, Notification
+from lms.models import Enrollment, UserProfile
+
+class UserResource(ModelResource):
+
+
+	class Meta:
+		queryset = UserProfile.objects.all()
+		resource_name = 'user'
+
+
 
 class CourseResource(ModelResource):
 

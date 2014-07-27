@@ -10,6 +10,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from course.models import Section
+from django.db.models.signals import post_save
 
 # Create your models here.
 
@@ -18,7 +19,7 @@ from course.models import Section
 
 class UserProfile(models.Model):
 	
-	user = models.OneToOneField(User)
+	user = models.OneToOneField(User, related_name="User")
 	first_name = models.CharField(max_length=60)
 	last_name = models.CharField(max_length=60)
 	email = models.EmailField(blank=True)
@@ -65,9 +66,26 @@ class Instructor(models.Model):
 
 class Enrollment(models.Model):
 	course = models.ForeignKey(Section)
-	student = models.ForeignKey(UserProfile)
+	student = models.ForeignKey(User)
 	created = models.DateTimeField(auto_now_add=True)
 
 	def __unicode__(self):
-		return (self.student.user.username + self.course.sectionCode +self.course.course.courseCode)
+		return (self.student.username + " | " + self.course.sectionCode + ">" + self.course.course.courseCode)
+
+class Pending(models.Model):
+	user = models.OneToOneField(User)
+	approved = models.BooleanField(default=False)
+
+	def __unicode__(self):
+		return (self.user.username)
+
+def remove_pending(sender, **kwargs):
+	obj = kwargs['instance']
+	if obj.approved==True:
+		obj.delete()
+
+post_save.connect(remove_pending, sender=Pending)
+
+
+
 
