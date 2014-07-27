@@ -23,7 +23,8 @@ class EnrollmentResource(ModelResource):
 		queryset = Enrollment.objects.all()
 		resource_name = 'enrollment'
 		filtering = {
-			"user":ALL_WITH_RELATIONS
+			"user":ALL_WITH_RELATIONS,
+			"section":ALL_WITH_RELATIONS
 
 		}
 
