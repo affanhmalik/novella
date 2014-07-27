@@ -35,7 +35,7 @@ def auth_and_login(request, onsuccess='/lms/', onfail='/lms/login/'):
 	if user is not None:
 		login(request, user)
 		data = {}
-		data['groups'] = str(user.groups.all()[0])
+		data['is_staff'] = user.is_staff
 		data['id'] = user.id
 		data['firstName'] = user.first_name
 		data['lastName'] = user.last_name
