@@ -45,7 +45,8 @@ def auth_and_login(request, onsuccess='/lms/', onfail='/lms/login/'):
 		return HttpResponse(status=401)
 
 def testlogin(request):
-	text = request.POST['email']
+	req = request.GET
+	text = req['email']
 
 	
 	return HttpResponse(text)
