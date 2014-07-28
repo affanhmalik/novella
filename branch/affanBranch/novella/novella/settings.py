@@ -86,11 +86,11 @@ USE_TZ = True
 
 STATIC_URL = '/novella/static/'
 
-CORS_ORIGIN_ALLOW_ALL = True
+#CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ORIGIN_WHITELIST = ()
+CORS_ORIGIN_WHITELIST = ('http://localhost:8100')
 
-CORS_EXPOSE_HEADERS = ('Access-Control-Allow-Origin')
+#CORS_EXPOSE_HEADERS = ()
 
 ADMIN_MEDIA_PREFIX = '/novella/admin-media/'
 
