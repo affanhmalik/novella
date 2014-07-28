@@ -18,5 +18,5 @@ v1_api.register(NotificationResource())
 urlpatterns = patterns('',
 	# url(r'^api/',include(v1_api.urls)),
 	url(r'api/', include(v1_api.urls)),
-	
+	url(r'^createAssignment/$', views.createAssignment, name='weblogin'),
 )

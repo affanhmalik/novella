@@ -88,6 +88,8 @@ STATIC_URL = '/novella/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+CORS_ORIGIN_WHITELIST = ()
+
 CORS_EXPOSE_HEADERS = ('origin')
 
 ADMIN_MEDIA_PREFIX = '/novella/admin-media/'
