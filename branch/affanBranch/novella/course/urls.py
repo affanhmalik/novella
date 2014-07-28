@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from tastypie.api import Api
 from api import CourseResource, SectionResource, LectureResource, ContentResource, AssignmentResource, NotificationResource
+from course import views
 
 # course_resource = CourseResource()
 
