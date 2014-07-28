@@ -16,6 +16,7 @@ from django.utils import simplejson
 from models import Pending
 import json
 from django.http import HttpResponse, HttpRequest
+from django_decorators.decorators import json_response
 
 # Create your views here.
 
@@ -55,6 +56,7 @@ def testlogin(request):
 
 
 # View funciton for signing up a new user
+@json_response
 def sign_up_in(request):
 	post = request.GET
 	email = post['email']
