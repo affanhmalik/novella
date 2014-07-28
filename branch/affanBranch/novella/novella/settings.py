@@ -90,7 +90,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST = ()
 
-CORS_EXPOSE_HEADERS = ('origin')
+CORS_EXPOSE_HEADERS = ('Access-Control-Allow-Origin')
 
 ADMIN_MEDIA_PREFIX = '/novella/admin-media/'
 
